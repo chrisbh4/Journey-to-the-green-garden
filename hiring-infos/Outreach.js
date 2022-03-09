@@ -81,6 +81,11 @@ Thanks and chat soon!
 Allie
 
 
+* Message to Engineers before submitting an application
+
+    Hi Brad! Sorry to bother but I'm an early career dev and saw you're working at InnovateEDU. I am passionate about tech in the
+    education space and would love to connect and pick your brain about your journey.
+    If not, no worries, and thanks! Allie
 
 
 
