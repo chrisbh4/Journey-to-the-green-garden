@@ -1,3 +1,11 @@
+const allNodesDepthRec =(root) =>{
+    if(!root) return []
+
+    const left = allNodesDepthRec(root.left);
+    const right = allNodesDepthRec(root.right);
+
+    return [root.val, ...left, ...right]
+}
 
 
 // BFS ( Queue ) : FIFO
@@ -24,7 +32,3 @@ const allNodeBreadth = root =>{
 
 
 // DFS : FILO
-
-
-
- 
