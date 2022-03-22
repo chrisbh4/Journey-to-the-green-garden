@@ -1,3 +1,28 @@
+// Tree traversals with BFS
+
+class Node {
+    constructor(val) {
+        this.val = val;
+        this.left = null;
+        this.right = null;
+    }
+};
+
+const a = new Node('a'); // {val: 'a', left: null, right: null}
+const b = new Node('b');
+const c = new Node('c');
+const d = new Node('d');
+const e = new Node('e');
+const f = new Node('f');
+
+
+a.left = b;
+a.right = c;
+b.left = d;
+b.right = e;
+c.right = f;
+
+
 const allNodesDepthRec = (root) => {
     if (!root) return []
 
@@ -45,5 +70,21 @@ const allNodesDepth = root => {
         if (cur.right) stack.push(cur.right);
         if (cur.left) stack.push(cur.left);
     }
+
+}
+
+console.log(allNodeBreadth(a))
+
+const bottomRight = root =>{
+    const queue = [root];
+    let cur = null;
+    while(queue.length){
+        cur=queue.shift();
+        if(cur.left)queue.push(cur.left)
+        if(cur.right)queue.push(cur.right)
+    }
+
+    return cur.val
+
 
 }
