@@ -1,14 +1,15 @@
 import { useState, useEffect } from "react/cjs/react.development";
+import DropDown from "./dropdownList.js"
 
 
 
 
-function ApiTest(){
+function ApiCall(){
 
     const [data, setData] = useState('');
     const [error, setError] = useState([]);
 
-    // async function apiCall(){
+// async function apiDataFetch(){
     //   const res = await fetch('https://api.interview.rlliquidators.com')
     //   if(res.ok){
     //       const data = await res.json();
@@ -18,29 +19,48 @@ function ApiTest(){
     //   }
 
     //   return data
-    // }
+// }
 
-    // apiCall()
+
 
   useEffect(() => {
-    async function apiCall() {
+    async function apiDataFetch() {
       const res = await fetch('https://api.interview.rlliquidators.com')
       if (res.ok) {
         const data = await res.json();
         setData(data)
-        console.log("Inside IF conditon")
-
       }
 
       return data
     }
 
-    apiCall()
+    apiDataFetch()
 
   }, [])
 
 
 //Link : https://stackoverflow.com/questions/61899340/receiving-a-cors-error-when-to-my-react-app-using-fetch-function
+
+  console.log("Outside of useEffect : ",data)
+
+
+    return(
+        <>
+        <h1>Inside API test</h1>
+        <div>
+          <DropDown  />
+        </div>
+        </>
+    )
+}
+
+
+export default ApiCall;
+
+
+
+
+
 
 
 // window.fetch('https://api.interview.rlliquidators.com',{header:{'Access-Control-Allow-Origin': 'http://localhost:3000'}})
@@ -68,16 +88,3 @@ function ApiTest(){
   //     setError(errors)
   //     return errors
   // })
-
-  console.log("Outside of useEffect : ",data)
-
-
-    return(
-        <>
-        <h1>Inside API test</h1>
-        </>
-    )
-}
-
-
-export default ApiTest;
