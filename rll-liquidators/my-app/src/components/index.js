@@ -7,7 +7,12 @@ import DropDown from "./dropdownList.js"
 function ApiCall(){
 
     const [data, setData] = useState('');
-    const [error, setError] = useState([]);
+    // const [selectedData, setSelectedData] = useState([]);
+
+    const onClick = (e) =>{
+      e.preventDefault();
+      
+    }
 
 // async function apiDataFetch(){
     //   const res = await fetch('https://api.interview.rlliquidators.com')
@@ -39,6 +44,25 @@ function ApiCall(){
   }, [])
 
 
+  const test= Object.entries(data)
+
+  const iterator = (arr) =>{
+  return arr.map((data)=>{
+        const key = data[0];
+        const value = data[1];
+      console.log("val :", value)
+
+        return(
+            <div>
+              <input type='radio' value={value}></input>
+              <label>{value}</label>
+            </div>
+        )
+    })
+}
+
+console.log(iterator(test))
+
 //Link : https://stackoverflow.com/questions/61899340/receiving-a-cors-error-when-to-my-react-app-using-fetch-function
 
   console.log("Outside of useEffect : ",data)
@@ -48,7 +72,10 @@ function ApiCall(){
         <>
         <h1>Inside API test</h1>
         <div>
-          <DropDown data={data} />
+          <input type='radio'></input>
+          <label>Select All</label>
+
+          {iterator(test)}
         </div>
         </>
     )
