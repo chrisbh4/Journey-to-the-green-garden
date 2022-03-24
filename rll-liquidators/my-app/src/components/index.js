@@ -48,7 +48,7 @@ function ApiCall(){
         <>
         <h1>Inside API test</h1>
         <div>
-          <DropDown  />
+          <DropDown data={data} />
         </div>
         </>
     )
