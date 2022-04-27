@@ -39,5 +39,26 @@ KeyError will render with '|' operations since the Key does not exists already
 - &() : capture operator is used to be an anonymous variable to be used while enumerating over enumerables
 
 # Pattern Matching
+'=' : is used for matching not just setting variables : matches right with left
+'^' :  variable we match on the existing value rather than rebinding to a new one
+
+# Control Structures
+- only falsey values are nil and the boolean false
+
+- if & unless ( if else conditionals )
+- case : to match against multiple patterns we can use 'case' , ex : case{ :ok, "hello world"} do....
+  - '_' : acts as the else clause for a case control
+- cond ( else if ) :
+- with : useful when you might use a nested case
+
+# Functions
+- Anonymous Functions : sum = fn (a, b) -> a + b end
+- Shorthand Anonymous Functions : sum = &(&1 + &2)
+  - shorthand parameters go as the following : &1 , &2 , &3......
+- Named Functions : defined with def <name> do ..... end
+- 1 line functions : def hello(name), do: "Hello, " <> name
+
+
+
 
  """
