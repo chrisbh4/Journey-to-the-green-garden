@@ -15,6 +15,7 @@
 
 [] How to connect the backend to the frontend
     - functionailty comes from defModule ChatWeb.<fileName> function
+    - Phoenix watches the state of the socket and if there is a new change to the socket state then it will rerender the html & data
 
 
 
