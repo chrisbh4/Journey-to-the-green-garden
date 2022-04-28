@@ -20,5 +20,9 @@
 
 
 
+    - Chat room App
+        - create server router
+        - create functionality with server & frontend
+        -
 
 """
