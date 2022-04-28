@@ -1,4 +1,5 @@
 """
+- Phoenix is exactly like Node.JS & Express it's used to build backend api's
 
 [] What connects the backend db to the API
 
