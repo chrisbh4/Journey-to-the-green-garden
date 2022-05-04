@@ -15,19 +15,19 @@ defmodule ChatWeb.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/", ChatWeb do
-    pipe_through :browser
-
-    get "/", PageController, :index
-    # get "/", PageController, :handel_event
-
-  end
-
   # scope "/", ChatWeb do
   #   pipe_through :browser
 
-  #   live "/", TestMyLive
+  #   get "/", PageController, :index
+
   # end
+
+  scope "/", ChatWeb do
+    pipe_through :browser
+
+    live "/", ChatLive
+    live "/:id", RoomLive
+  end
 
   # Other scopes may use custom stacks.
   # scope "/api", ChatWeb do

@@ -1,7 +1,9 @@
-defmodule ChatWeb.TestMyLive do
+defmodule ChatWeb.ChatLive do
   # In Phoenix v1.6+ apps, the line below should be: use MyAppWeb, :live_view
   use Phoenix.LiveView
   require Logger
+
+
 
   def render(assigns) do
     ~H"""
@@ -9,9 +11,14 @@ defmodule ChatWeb.TestMyLive do
     """
   end
 
+
+
+
+
   def handle_event("random_room",_params, socket)do
-    Logger.info("clicked")
-    {:noreply, socket}
+    random_slug ="/" <> MnemonicSlugs.generate_slug(4)
+    Logger.info(random_slug)
+    {:noreply, push_redirect(socket, to: random_slug)}
   end
 end
 
