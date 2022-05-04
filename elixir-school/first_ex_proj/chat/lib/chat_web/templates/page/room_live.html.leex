@@ -6,7 +6,9 @@
         Chat goes here
       </div>
 
-      <.form let={f} for={:chat} id="chat-form" phx-submit={:submit_message}>
-        <%# <%= text_input f, :message, placeholder: "Enter your message...." %> %>
-      </.form>
+   <div>
+        <.form let={f} for={:chat} id="chat-form" phx-submit={:submit_message}>
+         <%= text_input f, :message, placeholder: "Enter your message...." %>
+        </.form>
+      </div>
     </div>
