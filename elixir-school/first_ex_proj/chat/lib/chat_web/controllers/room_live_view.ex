@@ -50,6 +50,7 @@ def handle_info(%{event: "new-message", payload: message}, socket) do
   {:noreply, assign(socket, messages: socket.assigns.messages ++ [message])}
 end
 
+
 def handle_event("back_home", _params, socket) do
   {:noreply, push_redirect(socket, to: "/")}
 end

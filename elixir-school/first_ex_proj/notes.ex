@@ -18,13 +18,16 @@
     - functionailty comes from defModule ChatWeb.<fileName> function
     - Phoenix watches the state of the socket and if there is a new change to the socket state then it will rerender the html & data
 
+    - Controllers : module that contains the functioality for the server side rendering, has built in methods that use patter-matching
+    - LiveView : allows for server side rendering of html with no frontend servers needed, requires specifi modules that need to be imported
+    - functions can take in multiple parameters while calling a callback function inside
 
 
-    - Chat room App
-        - create server router
-        - create functionality with server & frontend
-        -
+# Questions to look up
+- What does "plug" do inside a routers pipeline function
+- What does "@impl" do?
 
-        j
+# Notes 1st walkthrough
+PageControllers are each individual pages functionality like POST/PUT/DELETE
 
 """
