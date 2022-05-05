@@ -26,6 +26,8 @@
 # Questions to look up
 - What does "plug" do inside a routers pipeline function
 - What does "@impl" do?
+- what does phx-update do?
+-
 
 # Notes 1st walkthrough
 PageControllers are each individual pages functionality like POST/PUT/DELETE

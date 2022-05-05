@@ -36,7 +36,10 @@ defmodule ChatWeb.RoomLive do
   def mount(%{"id" => room_id}, _session, socket) do
     topic = "room" <> room_id
     ChatWeb.Endpoint.subscribe((topic))
-    {:ok, assign(socket , room_id: room_id, topic: topic , messages: ["Chris joined the chat", "How are you liking elixir"])}
+    {:ok, assign(socket , room_id: room_id,
+    uuid: UUID.uuid4()
+     topic: topic ,
+     messages: ["Chris joined the chat", "How are you liking elixir"])}
   end
 
 def handle_event("submit_message", %{"chat" => %{"message" => message}}, socket)do
