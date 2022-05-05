@@ -47,7 +47,9 @@ end
 
 def handle_info(%{event: "new-message", payload: message}, socket) do
   Logger.info(payload: message)
-  {:noreply, assign(socket, messages: socket.assigns.messages ++ [message])}
+  Logger.info( all_messages: socket.assigns.messages)
+  # {:noreply, assign(socket, messages: socket.assigns.messages ++ [message])}
+  {:noreply, assign(socket, messages:[message])}
 end
 
 
