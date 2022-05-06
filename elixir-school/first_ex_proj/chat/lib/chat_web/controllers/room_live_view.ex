@@ -4,7 +4,7 @@ defmodule ChatWeb.RoomLive do
   use Phoenix.HTML
   require Logger
 
-  # Need to render the form and trying to render chat.html with the def render function below
+  # submit_form isn't resetting the inputs value after it has been submited
 
   def render(assigns) do
     ~H"""
@@ -15,12 +15,12 @@ defmodule ChatWeb.RoomLive do
       <div id="chat-container">
         <div id="chat-messages" phx-update="append">
           <%= for message <- @messages do %>
-          <p id={message} ><%= message %> </p>
+          <p id={message.uuid} ><%= message.content %> </p>
           <% end %>
          </div>
          <div>
-         <.form let={f} for={:chat} id="chat-form" phx-submit={:submit_message}>
-          <%= text_input f, :message, placeholder: "Enter your message...." %>
+         <.form let={f} for={:chat} id="chat-form" phx-submit={:submit_message} phx-change={:form_update}>
+          <%= text_input f, :message , value: @message , placeholder: "Enter your message...." %>
          </.form>
        </div>
       </div>
@@ -38,20 +38,23 @@ defmodule ChatWeb.RoomLive do
     ChatWeb.Endpoint.subscribe((topic))
     {:ok, assign(socket , room_id: room_id,
      topic: topic ,
-     messages: ["Chris joined the chat", "How are you liking elixir"],
+     messages: [%{uuid: UUID.uuid4(), content: "Chris has joined the chat."}],
      temporary_assigns: [messages: []]
      )}
   end
 
 def handle_event("submit_message", %{"chat" => %{"message" => message}}, socket)do
-  Logger.info(message: message)
+  message = %{ uuid: UUID.uuid4(), content: message}
   ChatWeb.Endpoint.broadcast(socket.assigns.topic, "new-message" ,message)
-  {:noreply, socket}
+  {:noreply, assign(socket, message: "...")}
+end
+
+def handle_event("form_update", %{"chat"=> %{"message"=> message}}, socket) do
+  Logger.info( message: message)
+  {:noreply, assign(socket, message: message)}
 end
 
 def handle_info(%{event: "new-message", payload: message}, socket) do
-  Logger.info(payload: message)
-  Logger.info( all_messages: socket.assigns.messages)
   # {:noreply, assign(socket, messages: socket.assigns.messages ++ [message])}
   {:noreply, assign(socket, messages: [message])}
 end
