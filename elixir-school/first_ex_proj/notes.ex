@@ -28,6 +28,7 @@
 - What does "@impl" do?
 - what does phx-update do?
 - what is DOM patching & temporary assigns ?
+- what is the connected mehtod for live view controllers?
 - 
 
 # Notes 1st walkthrough
