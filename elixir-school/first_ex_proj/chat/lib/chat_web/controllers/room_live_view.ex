@@ -13,9 +13,9 @@ defmodule ChatWeb.RoomLive do
       <button phx-click="back_home">Home</button>
 
       <div id="chat-container">
-        <div id="chat-messages">
+        <div id="chat-messages" phx-update="append">
           <%= for message <- @messages do %>
-          <p><%= message %> </p>
+          <p id={message} ><%= message %> </p>
           <% end %>
          </div>
          <div>
@@ -37,9 +37,10 @@ defmodule ChatWeb.RoomLive do
     topic = "room" <> room_id
     ChatWeb.Endpoint.subscribe((topic))
     {:ok, assign(socket , room_id: room_id,
-    uuid: UUID.uuid4()
      topic: topic ,
-     messages: ["Chris joined the chat", "How are you liking elixir"])}
+     messages: ["Chris joined the chat", "How are you liking elixir"],
+     temporary_assigns: [messages: []]
+     )}
   end
 
 def handle_event("submit_message", %{"chat" => %{"message" => message}}, socket)do
@@ -52,7 +53,7 @@ def handle_info(%{event: "new-message", payload: message}, socket) do
   Logger.info(payload: message)
   Logger.info( all_messages: socket.assigns.messages)
   # {:noreply, assign(socket, messages: socket.assigns.messages ++ [message])}
-  {:noreply, assign(socket, messages:[message])}
+  {:noreply, assign(socket, messages: [message])}
 end
 
 
