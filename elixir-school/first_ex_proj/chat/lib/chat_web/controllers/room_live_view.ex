@@ -9,13 +9,13 @@ defmodule ChatWeb.RoomLive do
   def render(assigns) do
     ~H"""
     <div>
-      <h1>Welcome to the chat room id: <%= @room_id %> </h1>
+      <h1>Currently chatting in  <strong> <%= @room_id %> </strong> as <strong> <%= @username %> </strong></h1>
       <button phx-click="back_home">Home</button>
 
       <div id="chat-container">
         <div id="chat-messages" phx-update="append">
           <%= for message <- @messages do %>
-          <p id={message.uuid} ><%= message.content %> </p>
+          <p id={message.uuid} > <strong > <%= message.username %> </strong>: <%= message.content %> </p>
           <% end %>
          </div>
          <div>
@@ -35,18 +35,21 @@ defmodule ChatWeb.RoomLive do
 
   def mount(%{"id" => room_id}, _session, socket) do
     topic = "room" <> room_id
+    username = MnemonicSlugs.generate_slug(2)
     ChatWeb.Endpoint.subscribe((topic))
     {:ok, assign(socket , room_id: room_id,
      topic: topic ,
-     messages: [%{uuid: UUID.uuid4(), content: "Chris has joined the chat."}],
+     username: username,
+     message: "",
+     messages: [%{uuid: UUID.uuid4(), content: "#{username} has joined the chat.", username: "system"}],
      temporary_assigns: [messages: []]
      )}
   end
 
 def handle_event("submit_message", %{"chat" => %{"message" => message}}, socket)do
-  message = %{ uuid: UUID.uuid4(), content: message}
-  ChatWeb.Endpoint.broadcast(socket.assigns.topic, "new-message" ,message)
-  {:noreply, assign(socket, message: "...")}
+  message = %{ uuid: UUID.uuid4(), content: message, username: socket.assigns.username}
+  ChatWeb.Endpoint.broadcast(socket.assigns.topic, "new-message" , message)
+  {:noreply, assign(socket, message: "")}
 end
 
 def handle_event("form_update", %{"chat"=> %{"message"=> message}}, socket) do
