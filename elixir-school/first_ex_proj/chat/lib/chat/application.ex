@@ -14,6 +14,7 @@ defmodule Chat.Application do
       {Phoenix.PubSub, name: Chat.PubSub},
       # Start the Endpoint (http/https)
       ChatWeb.Endpoint
+      ChatWeb.Presence
       # Start a worker by calling: Chat.Worker.start_link(arg)
       # {Chat.Worker, arg}
     ]

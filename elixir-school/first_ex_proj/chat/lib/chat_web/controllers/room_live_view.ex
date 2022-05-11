@@ -23,7 +23,13 @@ defmodule ChatWeb.RoomLive do
           <%= text_input f, :message , value: @message , placeholder: "Enter your message...." %>
          </.form>
        </div>
-      </div>
+
+       <div id="user-list">
+       <h2>User's Online </h2>
+       <p>User 1 </p>
+       <p>User 2 </p>
+       </div>
+       </div>
 
     </div>
     """

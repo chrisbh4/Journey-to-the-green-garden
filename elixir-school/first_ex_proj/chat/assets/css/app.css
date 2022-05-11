@@ -13,6 +13,8 @@
 
 #chat-messages{
   flex-grow:1;
+  margin: -1em 1em 1em -1em;
+  border: 1px solid #cccccc;
 }
 
 /* Alerts and form errors used by phx.new */
