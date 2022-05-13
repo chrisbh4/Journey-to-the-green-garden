@@ -42,19 +42,27 @@ defmodule ChatWeb.RoomLive do
   def mount(%{"id" => room_id}, _session, socket) do
     topic = "room" <> room_id
     username = MnemonicSlugs.generate_slug(2)
-    ChatWeb.Endpoint.subscribe((topic))
+    # IF i dont conditionaly check if the socket is already connected then when a user joins the chat-room it will register two users 1 who will join & leave and another who will justj join
+    if connected?(socket)do
+      ChatWeb.Endpoint.subscribe((topic))
+      ChatWeb.Presence.track(self(), topic , username, %{})
+    end
+
     {:ok, assign(socket , room_id: room_id,
      topic: topic ,
      username: username,
      message: "",
-     messages: [%{uuid: UUID.uuid4(), content: "#{username} has joined the chat.", username: "system"}],
+     messages: [],
      temporary_assigns: [messages: []]
      )}
   end
 
-def handle_event("submit_message", %{"chat" => %{"message" => message}}, socket)do
+  # All events are handeled on pattern matching the event name & the event parameters
+  # def handle_event("submit_message", %{"chat" => %{"message" => message}}, socket)do
   message = %{ uuid: UUID.uuid4(), content: message, username: socket.assigns.username}
   ChatWeb.Endpoint.broadcast(socket.assigns.topic, "new-message" , message)
+  # Assigns is like the react state it adds meta-data to the socket state to keep track of changes
+  # :noreply is a method that tells the server what to return and how to operate
   {:noreply, assign(socket, message: "")}
 end
 
@@ -68,12 +76,23 @@ def handle_info(%{event: "new-message", payload: message}, socket) do
   {:noreply, assign(socket, messages: [message])}
 end
 
-
 def handle_event("back_home", _params, socket) do
   {:noreply, push_redirect(socket, to: "/")}
 end
 
+def handle_info(%{event: "presence_diff", payload: %{joins: joins , leaves: leaves}}, socket) do
+  join_messages =
+    joins
+      |> Map.keys()
+      |> Enum.map(fn username -> %{uuid: UUID.uuid4(), content: "#{username} joined ", username: "system"} end)
 
+  leave_messages =
+    leaves
+      |> Map.keys()
+      |> Enum.map(fn username -> %{uuid: UUID.uuid4(), content: "#{username} left ", username: "system"} end)
+  {:noreply, assign(socket, messages: join_messages ++ leave_messages)}
+
+end
 
 
 
