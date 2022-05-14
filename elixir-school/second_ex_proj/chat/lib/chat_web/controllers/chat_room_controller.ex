@@ -11,7 +11,7 @@ defmodule ChatWeb.ChatRoomLiveController do
     <button phx-click="home-button">Home</button>
 
     <.form let={f} for={:chat} phx-submit={:new_message}>
-      <%= text_input f, :message_input %>
+      <%= text_input f, :message  %>
     </.form>
     </section>
     """
@@ -21,7 +21,7 @@ defmodule ChatWeb.ChatRoomLiveController do
 
   def mount(_params, socket) do
     Logger.info("Inside Chat room")
-    {:noreply, socket}
+    {:noreply, assign(socket, messages:["Chris is signed on", "Phoenix Chat room is signed on"], username: "system" )}
   end
 
   def handle_event("home-button", _params, socket) do
@@ -29,8 +29,8 @@ defmodule ChatWeb.ChatRoomLiveController do
     {:noreply, push_redirect(socket, to: "/")}
   end
 
-  def handle_event(event: "new-message", payload: message, socket) do
-    Logger.info(:payload , message_input)
-    {:noreply, socket}
+  def handle_event(%{event: "new-message", payload: message}, socket) do
+    Logger.info(:payload , message)
+    {:noreply, assign(socket, message: message)}
   end
 end
