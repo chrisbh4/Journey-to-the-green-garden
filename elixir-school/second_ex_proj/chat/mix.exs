@@ -45,7 +45,9 @@ defmodule Chat.MixProject do
       {:telemetry_poller, "~> 1.0"},
       {:gettext, "~> 0.18"},
       {:jason, "~> 1.2"},
+      {:mnemonic_slugs, "~> 0.0.3"},
       {:plug_cowboy, "~> 2.5"}
+
     ]
   end
 

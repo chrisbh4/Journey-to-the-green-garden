@@ -1,4 +1,4 @@
-defmodule ChatWeb.ChatRoomControllerLive do
+defmodule ChatWeb.ChatRoomLiveController do
   # In Phoenix v1.6+ apps, the line below should be: use MyAppWeb, :live_view
   use Phoenix.LiveView
   use Phoenix.HTML
@@ -6,13 +6,7 @@ defmodule ChatWeb.ChatRoomControllerLive do
 
   def render(assigns) do
     ~H"""
-      <section class="phx-hero">
-      <h1>  Welcome to Phoenix ! </h1>
-      <p>Peace of mind from prototype to production</p>
-      <section  >
-        <button phx-click="generate-room"> Generate Room </button>
-      </section>
-    </section>
+    <h1> Inside Chat Room </h1>
 
 
     """
@@ -24,8 +18,5 @@ defmodule ChatWeb.ChatRoomControllerLive do
   end
 
 
-  def handle_event("generate-room",_params, socket) do
-    Logger.info(click: "click")
-    {:noreply , socket}
-  end
+
 end
