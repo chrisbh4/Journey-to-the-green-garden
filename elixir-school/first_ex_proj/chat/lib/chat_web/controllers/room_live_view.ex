@@ -19,6 +19,8 @@ defmodule ChatWeb.RoomLive do
           <% end %>
          </div>
          <div>
+
+         
          <.form let={f} for={:chat} id="chat-form" phx-submit={:submit_message} phx-change={:form_update}>
           <%= text_input f, :message , value: @message , placeholder: "Enter your message...." %>
          </.form>
