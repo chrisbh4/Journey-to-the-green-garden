@@ -11,8 +11,8 @@ defmodule PatternMatching.Lists do
   Fix or complete the code to make the tests pass.
   """
 
-  def is_empty?(_list) do
-    
+  def is_empty?(list) do
+
   end
 
   def has_1_item?(_list) do
@@ -23,7 +23,9 @@ defmodule PatternMatching.Lists do
 
   end
 
-  def return_first_item(_list) do
+  def return_first_item(list) do
+    [first, _rest] = list
+    first
 
   end
 
@@ -31,12 +33,22 @@ defmodule PatternMatching.Lists do
 
   end
 
-  def sum_pair(_list) do
-
+  def sum_pair(list) do
+    # [first, second | _rest ] = list
+    # result = first + second
+    # result
   end
 
-  def sum_first_2(_list) do
-
+  def sum_first_2(list) do
+    [first , second | rest ] = list
+    if first and second do
+      sum = first + second
+    else
+      ["It worked"]
+    end
+    # result = [sum | rest]
+    l = [3,5,7,7,8] ++ [3]
+    r = [sum] ++ rest
   end
 
 end
