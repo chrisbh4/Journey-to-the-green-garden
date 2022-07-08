@@ -24,8 +24,6 @@ defmodule PatternMatching.Lists do
   end
 
   def return_first_item(list) do
-    [first, _rest] = list
-    first
 
   end
 
@@ -40,15 +38,15 @@ defmodule PatternMatching.Lists do
   end
 
   def sum_first_2(list) do
-    [first , second | rest ] = list
-    if first and second do
-      sum = first + second
-    else
-      ["It worked"]
-    end
-    # result = [sum | rest]
-    l = [3,5,7,7,8] ++ [3]
-    r = [sum] ++ rest
+  #   [first , second | rest ] = list
+  #   if first and second do
+  #     sum = first + second
+  #   else
+  #     ["It worked"]
+  #   end
+  #   # result = [sum | rest]
+  #   l = [3,5,7,7,8] ++ [3]
+  #   r = [sum] ++ rest
   end
 
 end
