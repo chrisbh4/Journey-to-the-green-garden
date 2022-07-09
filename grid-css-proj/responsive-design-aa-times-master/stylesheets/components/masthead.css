@@ -3,4 +3,18 @@
     display: grid;
     grid-template-columns: repeat(3,1fr);
 }
- 
+
+
+.masthead__menu-and-search{
+    grid-column-start: span 2;
+
+}
+
+
+.masthead__tech{
+    grid-column-start: 2;
+}
+
+.masthead__date{
+    grid-column-start: 1;
+}
