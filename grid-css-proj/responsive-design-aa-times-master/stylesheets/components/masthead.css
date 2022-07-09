@@ -7,6 +7,9 @@
 
 .masthead__menu-and-search{
     grid-column-start: span 2;
+    display: flex;
+    align-items:center;
+    padding: 20px;
 
 }
 
@@ -17,4 +20,27 @@
 
 .masthead__date{
     grid-column-start: 1;
+}
+
+.masthead__actions{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+
+}
+
+.settings{
+
+}
+
+
+.masthead__buttons{
+    font-size: 15px;
+    padding-left: 9px;
+    padding-right: 9px;
+}
+
+.masthead__buttons:hover{
+    background-color: #e2e2e2;
 }
