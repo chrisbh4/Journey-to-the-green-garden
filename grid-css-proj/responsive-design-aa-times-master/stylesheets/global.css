@@ -31,5 +31,5 @@ button{
 
 button:hover{
     transition-property: background-color;
-    transition-duration: 3s;
+    transition-duration: 0.3s;
 }
