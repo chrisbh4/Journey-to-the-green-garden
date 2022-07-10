@@ -26,25 +26,37 @@
   .masthead__technology-list {
     color: #6f6f6f;
     font-size: 10px;
+    display: flex;
+    justify-content: center;
     text-transform: uppercase;
+    border-left: 1px solid #e2e2e2;
+    border-right: 1px solid #e2e2e2;
+    border-top: 1px solid #e2e2e2;
+    padding-top: 1px;
   }
 
 .masthead__date{
     grid-column-start: 1;
-    margin-bottom: 11px;
+    padding-bottom: 11px;
     display: flex;
     align-items: flex-end;
+    border-bottom: 1px solid #e2e2e2;
+    border-top: 1px solid #e2e2e2;
 }
 
 .masthead__logo{
+    border-bottom: 1px solid #e2e2e2;
+    border-top: 1px solid #e2e2e2;
+    padding-bottom: 11px;
     display: flex;
     justify-content: center;
     text-align: center;
 }
 
 .masthead__paper{
-
-    margin-bottom: 11px;
+    border-bottom: 1px solid #e2e2e2;
+    border-top: 1px solid #e2e2e2;
+    padding-bottom: 11px;
     display: flex;
     align-items: flex-end;
     justify-content: flex-end;
