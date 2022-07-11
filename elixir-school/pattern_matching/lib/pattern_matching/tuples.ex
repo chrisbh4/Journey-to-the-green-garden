@@ -25,11 +25,14 @@ defmodule PatternMatching.Tuples do
   end
 
   def major_us_holiday(erl_date) do
-    # {_year, month , _day } = erl_date
-    # case erl_date do
-    #   {month,} -> "Christmas"
-    #   _error -> "No holiday"
-    # end
+    {_year, month , _day } = erl_date
+     date = %{month: month}
+     case date do
+       %{month: 12 } -> "Christmas"
+       %{month: 7} -> "4th of July"
+       %{month: 1 } -> "New Years"
+       _error -> "Uh..."
+     end
   end
 
   def greet_user(tuple) do
