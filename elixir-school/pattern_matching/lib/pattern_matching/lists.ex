@@ -12,41 +12,82 @@ defmodule PatternMatching.Lists do
   """
 
   def is_empty?(list) do
-
+    if is_list(list) do
+      len = length(list)
+      cond do
+        len > 0 -> false
+        len == 0 -> true
+      end
+    else
+      false
+    end
   end
 
-  def has_1_item?(_list) do
-
+  def has_1_item?(list) do
+    if is_list(list) do
+      if length(list) == 1 do
+        true
+      else
+        false
+      end
+    end
   end
 
-  def at_least_one?(_list) do
-
+  def at_least_one?(list) do
+    len = length(list)
+    if len > 0 do
+      true
+    else
+      false
+    end
   end
 
   def return_first_item(list) do
-
+    if is_list(list)do
+      if length(list) >= 1 do
+        [head | _tail] = list
+        head
+      else
+        :error
+      end
+    end
   end
 
-  def starts_with_1?(_list) do
-
+  def starts_with_1?(list) do
+    if length(list) > 0 do
+      [head | _rest] = list
+      if head === 1 do
+        true
+      else
+        false
+      end
+    else
+      false
+    end
   end
 
   def sum_pair(list) do
-    # [first, second | _rest ] = list
-    # result = first + second
-    # result
+    if length(list) === 2 do
+      [first, second | _tail] = list
+      sum = first + second
+      sum
+    else
+      :error
+    end
   end
 
   def sum_first_2(list) do
-  #   [first , second | rest ] = list
-  #   if first and second do
-  #     sum = first + second
-  #   else
-  #     ["It worked"]
-  #   end
-  #   # result = [sum | rest]
-  #   l = [3,5,7,7,8] ++ [3]
-  #   r = [sum] ++ rest
+    if length(list) >= 1 do
+      if length(list) === 1 do
+        list
+      else
+        [first , second | tail] = list
+        sum = first + second
+        [sum] ++ tail
+      end
+    else
+    []
+    end
   end
 
 end
