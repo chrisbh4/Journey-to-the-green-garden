@@ -11,17 +11,26 @@ defmodule PatternMatching.Maps do
   Fix or complete the code to make the tests pass.
   """
 
-  def return_name(value) do
-    case value do
-      %{name: name} -> name
-    end
+  def return_name(%{name: name}) do
+    name
   end
+  # def return_name(value) do
+  #   case value do
+  #     %{name: name} -> name
+  #   end
+  # end
 
-  def has_sides?(value) do
-    case value do
-      %{ sides: _side} -> :true
-      _error -> :false
-    end
+  # def has_sides?(value) do
+  #   case value do
+  #     %{ sides: _side} -> :true
+  #     _error -> :false
+  #   end
+  # end
+  def has_sides?(%{sides: _sides}) do
+    true
+  end
+  def has_sides?(_sides) do
+    false
   end
 
   def net_change(value) do
