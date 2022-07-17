@@ -11,20 +11,20 @@ defmodule PatternMatching.Tuples do
   Fix or complete the code to make the tests pass.
   """
 
-  def day_from_date(_erl_date) do
+  def day_from_date({_,_,day}), do: day
 
-  end
 
-  def has_three_elements?(_tuple) do
+  def has_three_elements?({_,_,_}), do: true
+  def has_three_elements?(_other), do: false
 
-  end
+  def major_us_holiday({_,12,_}), do: "Christmas"
+  def major_us_holiday({_,7,_}), do: "4th of July"
+  def major_us_holiday({_,1,_}), do: "New Years"
+  def major_us_holiday(_other), do: "Uh..."
 
-  def major_us_holiday(_erl_date) do
+  def greet_user({:ok, name}), do: "Hello #{name}!"
+  def greet_user({:error, _}), do: "Cannot greet"
 
-  end
-
-  def greet_user(_tuple), do: nil
-
-  def add_to_result(_tuple), do: nil
-
+  def add_to_result({:ok, num}), do: {:ok, num + 10}
+  def add_to_result({:error, num}), do: {:error, num}
 end
