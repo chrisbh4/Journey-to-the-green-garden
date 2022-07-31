@@ -12,11 +12,16 @@ defmodule CodeFlow.Keywords do
   """
   # alias CodeFlow.Schemas.Item
 
-  def rounded(_value, _opts \\ []) do
-
+  def rounded(value, opts \\ []) do
+    decimal = Keyword.get(opts, :decimals) || 4
+    Float.round(value, decimal)
   end
 
-  def unit_price(_item, _opts \\ []) do
+  @spec unit_price(any, any) :: nil
+  def unit_price(item, opts \\ []) do
+    operation = Keyword.get(opts, :float, :short)
+    
+    # operation = Keyword.get(opts, :money, "money")
 
   end
 end
