@@ -12,6 +12,8 @@ defmodule CodeFlow.Recursion do
   """
   alias CodeFlow.Fake.Customers
   alias CodeFlow.Schemas.OrderItem
+  alias CodeFlow.Schemas.Customer
+
 
   @doc """
   Sum a list of OrderItems to compute the order total.
@@ -41,9 +43,23 @@ defmodule CodeFlow.Recursion do
   query to an SQL database. This is just to practice conditionally incrementing
   a counter and looping using recursion.
   """
-  def count_active(_customers) do
-
+  # pass the list into the helper functions and starting accumulator = 0
+  # match with the head of the list and match if Customer.active == true
+  # when true pass the rest of the list and total + 1
+  # match with an empty list and total then return total
+  def count_active(customers) do
+    do_count_active(customers, 0)
   end
+
+  defp do_count_active([%Customer{active: true}| rest], total) do
+    do_count_active(rest, total+ 1)
+  end
+
+  defp do_count_active([_customer | rest], acc) do
+    do_count_active(rest, acc)
+  end
+
+  defp do_count_active([], total), do: total
 
   @doc """
   Create the desired number of customers. Provide the number of customers to

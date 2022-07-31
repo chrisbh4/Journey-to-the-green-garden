@@ -21,13 +21,7 @@ defmodule CodeFlow.RecursionTest do
       assert 0 == Recursion.order_total([])
     end
 
-    """
-    - split the list from [head| rest] which seperates the first item in the list
-    - Key into OrderItem and access .price & .item.price and multiple togeter
-      - take the total of the multplication and sum it with total
-    - pass the rest of the list and total into the recursive function again
-    - create a function when passed a empty list and total return total
-    """
+  
     test "sums the total for all OrderItems in a list" do
       order_items = [
         %OrderItem{quantity: 2, item: %Item{name: "Item 1", price: 5.00}},
