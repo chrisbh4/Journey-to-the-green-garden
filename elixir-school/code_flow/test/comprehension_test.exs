@@ -14,6 +14,8 @@ defmodule CodeFlow.ComprehensionTest do
   alias CodeFlow.Comprehension
   alias CodeFlow.Schemas.User
 
+
+
   describe "award_unfair_points/2" do
     test "returns correctly filtered list of users with incremented points" do
       users = [
